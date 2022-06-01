@@ -1,0 +1,14 @@
+version: '3.1'
+
+services:
+
+  db:
+    image: mysql
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: RootPassword
+      MYSQL_DATABASE: products_db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
