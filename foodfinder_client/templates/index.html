@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vegetarian menu builder</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<header>
+    <h1>Menu options for vegetarians, bon appetit!</h1>
+    <div class="input-block days-block">
+        <label for="days-input">For how many days do you need a menu?</label>
+        <input id="days-input" type="number" min="1" max="7" value="1">
+        <span class="label-bottom">from 1 day to 1 week</span>
+    </div>
+</header>
+
+<main id="main-search-parameters">
+
+    <div id="calories" class="sub-wrap">
+
+        <div class="input-block calories-block">
+            <label for="calories-input">Calories, max (kcal/day):</label>
+            <input id="calories-input" type="number" min="500" max="3000" value="1600" step="50">
+            <span class="label-bottom">Calories value for day: 500kcal - 3000kcal</span>
+        </div>
+
+        <button onclick="getMenuByCaloriesForDay()" class="bottom-btn" id="button">Serch by calories</button>
+
+    </div>
+
+    <div id="macronutrients" class="sub-wrap">
+
+        <div class="input-block nutrition-block">
+            <label for="protein-input">Protein, min (gram/day):</label>
+            <input id="protein-input" type="number" min="10" max="80" value="10" step="5">
+            <span class="label-bottom">Proteins value for day: 10g - 80g</span>
+        </div>
+
+        <div class="input-block nutrition-block">
+            <label for="fat-input">Fat, min (gram/day):</label>
+            <input id="fat-input" type="number" min="10" max="150" value="10" step="5">
+            <span class="label-bottom">Fat value for day: 10g - 150g</span>
+        </div>
+
+        <div class="input-block nutrition-block">
+            <label for="carbs-input">Carbohydrates, min (gram/day):</label>
+            <input id="carbs-input" type="number" min="10" max="350" value="10" step="10">
+            <span class="label-bottom">Carbohydrate value for day: 10g - 350g</span>
+        </div>
+
+        <button onclick="getMenuByMacronutriensForDay()" class="bottom-btn" id="button">Serch by macronutrients</button>
+
+    </div>
+
+</main>
+
+<div id="menu-output">
+
+    <div class="day-wrapper" id="test-wrapper">
+        <h2 class="day-h2">Day 1 menu</h2>
+        <div class="meals">
+            <table class="meals-table">
+                <tr>
+                    <th>Breakfast:</th>
+                    <td id="meal-1-day-1">Potato su petrazolis</td>
+                    <td id="link-1-day-1"><a href="http://" target="_blank" rel="noopener noreferrer">check receipt</a>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Dinner:</th>
+                    <td id="meal-2-day-1">Potato su petrazolis 2</td>
+                    <td id="link-2-day-1"><a href="http://" target="_blank" rel="noopener noreferrer">check receipt</a>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Supper:</th>
+                    <td id="meal-3-day-1">Potato su petrazolis 3</td>
+                    <td id="link-3-day-1"><a href="http://" target="_blank" rel="noopener noreferrer">check receipt</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="details">
+            <table class="details-table">
+                <tr id="calories-line">
+                    <th>Calories:</th>
+                    <td id="calories-output">1500</td>
+                    <td>kcal</td>
+                </tr>
+                <tr id="proteins-line">
+                    <th>Proteins:</th>
+                    <td id="proteins-output">120</td>
+                    <td>gram</td>
+                </tr>
+                <tr id="fats-line">
+                    <th>Fats:</th>
+                    <td id="fats-output">100</td>
+                    <td>gram</td>
+                </tr>
+                <tr id="carbs-line">
+                    <th>Carbohydrates:</th>
+                    <td id="carbs-output">200</td>
+                    <td>gram</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<script src="../static/js/script.js">
+
+</script>
+</body>
+
+</html>
