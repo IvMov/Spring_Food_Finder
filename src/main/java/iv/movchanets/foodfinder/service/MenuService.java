@@ -45,12 +45,6 @@ public class MenuService {
 
         List<Menu> menus = new ArrayList<>();
 
-//        for (int i = 0; i < days; i++) {
-//            menus.add(getNewDayMenuByCalories(calories));
-//        }
-
-
-//        TODO: fix using db to output existing menus
         if (savedMenus <= 3) {
             for (int i = 0; i < days; i++) {
                 menus.add(getNewCaloriesDayMenuToDatabase(calories));
@@ -134,9 +128,7 @@ public class MenuService {
 
         dayMenuObject.setNutrients(nutrientsRepository.save(nutrientsObject));
 
-        Menu savedMenu = menuRepository.save(dayMenuObject);
-
-        return savedMenu;
+        return menuRepository.save(dayMenuObject);
 
     }
 
@@ -198,8 +190,7 @@ public class MenuService {
         List<Menu> menus = menuRepository.findAll().stream()
                 .filter(menu -> (menu.getNutrients().getCalories() <= (calories + 20)) && (menu.getNutrients().getCalories() >= (calories - 200)))
                 .toList();
-        Menu menu = menus.get(getRandomNumber(menus.size()));
-        return menu;
+        return menus.get(getRandomNumber(menus.size()));
     }
 
     private Menu getDayMenuByMacronutrients(int protein, int fat, int carbs) throws IOException, InterruptedException {
