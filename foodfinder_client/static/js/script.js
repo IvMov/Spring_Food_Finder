@@ -2,29 +2,23 @@ console.log("labas");
 
 function getMenuByCaloriesForDay() {
 
-  let hide = document.getElementById("test-wrapper");
-      hide.innerHTML = "";
-      hide.classList.add("hide");
-
   let daysNrInput = document.getElementById("days-input").value;
 
   let caloriesInput = document.getElementById("calories-input").value;
 
   let menuOutput = document.getElementById("menu-output");
+  menuOutput.innerHTML = "";
+
 
   fetch(`http://localhost:8080/menu/days/${daysNrInput}/${caloriesInput}`)
     .then(response => response.json())
-    .then((menues) => {
-      console.log(menues);
-
+    .then((menus) => {
+    console.log(menus);
       for (let i = 0; i < daysNrInput; i++) {
 
-        let menu = menues[i];
+        let menu = menus[i];
 
         createDayWrapperStructure(i, menuOutput);
-
-        console.log("nu alio")
-        console.log(menu);
 
         createDayMenuFromApi(i, menu);
 
@@ -34,8 +28,8 @@ function getMenuByCaloriesForDay() {
 
 }
 
-function getMenuByMacronutriensForDay() {
-
+function getMenuByMacronutrientsForDay() {
+   alert("Sorry not enable to find by macronutrients, and I will return just random vegetarian menu")
   let daysNrInput = document.getElementById("days-input").value;
 
   let proteinsInput = document.getElementById("protein-input").value;
@@ -43,17 +37,17 @@ function getMenuByMacronutriensForDay() {
   let carbsInput = document.getElementById("carbs-input").value;
 
   let menuOutput = document.getElementById("menu-output");
+   menuOutput.innerHTML = "";
 
   fetch(`http://localhost:8080/menu/days/${daysNrInput}/${proteinsInput}/${fatInput}/${carbsInput}`)
     .then(response => response.json())
-    .then((menues) => {
+    .then((menus) => {
 
       for (let i = 0; i < daysNrInput; i++) {
 
         createDayWrapperStructure(i, menuOutput);
 
-        let menu = menues[i];
-      
+        let menu = menus[i];
 
         createDayMenuFromApi(i, menu);
 
@@ -170,6 +164,7 @@ function createDayMenuFromApi(i, menu) {
   for (let j = 1; j <= 3; j++) {
 
     let mealTitle = document.getElementById(`meal-${j}-day-${i+1}`);
+    console.log(menu);
     mealTitle.textContent = menu.meals[j-1].title;
 
     let mealLink = document.getElementById(`link-${j}-day-${i+1}`);
@@ -181,11 +176,11 @@ function createDayMenuFromApi(i, menu) {
   caloriesOutput.textContent = menu.nutrients.calories;
   
   let proteinsOutput = document.getElementById(`details-2-day-${i + 1}`);
-  proteinsOutput.textContent = menu.nutrients.calories;
+  proteinsOutput.textContent = menu.nutrients.protein;
 
   let fatsOutput = document.getElementById(`details-3-day-${i + 1}`);
-  fatsOutput.textContent = menu.nutrients.calories;
+  fatsOutput.textContent = menu.nutrients.fat;
   
   let carbsOutput = document.getElementById(`details-4-day-${i + 1}`);
-  carbsOutput.textContent = menu.nutrients.calories;
+  carbsOutput.textContent = menu.nutrients.carbohydrates;
 }

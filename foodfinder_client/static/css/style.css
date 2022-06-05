@@ -42,12 +42,6 @@ img {
     font-family: var(--main-font-family);
 }
 
-/* span - bottom-labels */
-
-.hide {
-    display: none;
-}
-
 header h1 {
     width: 90%;
     margin: 4rem 0;
@@ -110,6 +104,7 @@ button.bottom-btn {
 
 div.day-wrapper {
     display: flex;
+    width: 100%;
 
 }
 

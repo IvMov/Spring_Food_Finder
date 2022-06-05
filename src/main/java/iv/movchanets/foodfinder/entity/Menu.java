@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -21,8 +22,10 @@ public class Menu {
             referencedColumnName = "id")
     private Nutrients nutrients;
 
-    @OneToMany(mappedBy = "menu",
-            fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL)
-    private Set<Meal> meals;
+    @ManyToMany
+    @JoinTable(
+            name = "meals_menus",
+            joinColumns = @JoinColumn(name = "menu_id"),
+            inverseJoinColumns = @JoinColumn(name = "meal_id"))
+    private Set<Meal> meals = new HashSet<>();
 }

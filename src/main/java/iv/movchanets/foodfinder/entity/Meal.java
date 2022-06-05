@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -12,6 +14,10 @@ import javax.persistence.*;
 public class Meal {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long newId;
+
+    @Column
     private Long id;
 
     @Column
@@ -29,9 +35,7 @@ public class Meal {
     @Column
     private String sourceUrl;
 
-    @ManyToOne
-    @JoinColumn(name = "Menu",
-            referencedColumnName = "id")
-    private Menu menu;
+    @ManyToMany(mappedBy = "meals")
+    private Set<Menu> eventsPaid = new HashSet<>();
 
 }
